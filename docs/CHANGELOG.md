@@ -36,3 +36,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Real-time Notifications center (Tabs: Toutes, Connexions, Compte, Système)
 - Customer Support & Help Center (FAQ, live troubleshooting, contact support)
 - Production-ready modular architecture and type-safe services
+- Automated GitHub Actions APK deployment workflow (`.github/workflows/build-apk.yml`) with release artifact publishing
+- Cloud & local EAS Build profiles (`eas.json`) for standalone Android APK generation
+- Android manifest security and network permissions in `app.json`

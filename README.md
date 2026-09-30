@@ -24,9 +24,10 @@
 6. [Installation & Démarrage Rapide](#-installation--démarrage-rapide)
 7. [Variables d'Environnement](#-variables-denvironnement)
 8. [Commandes de Build & Typage](#-commandes-de-build--typage)
-9. [Workflow Git & Stratégie de Branches](#-workflow-git--stratégie-de-branches)
-10. [Règles Strictes de Sécurité & Confidentialité](#-règles-strictes-de-sécurité--confidentialité)
-11. [Feuille de Route (Roadmap)](#-feuille-de-route-roadmap)
+9. [Déploiement & Génération de l'APK Android](#-déploiement--génération-de-lapk-android)
+10. [Workflow Git & Stratégie de Branches](#-workflow-git--stratégie-de-branches)
+11. [Règles Strictes de Sécurité & Confidentialité](#-règles-strictes-de-sécurité--confidentialité)
+12. [Feuille de Route (Roadmap)](#-feuille-de-route-roadmap)
 
 ---
 
@@ -119,12 +120,17 @@ L'interface utilisateur déploie une esthétique **cyber-anime / néo-tokyo afri
 
 ```
 continent-vpn-mobile/
+├── .github/
+│   └── workflows/
+│       ├── build-apk.yml       # Compilation & Release GitHub automatique d'APK Android
+│       └── eas-build.yml       # Compilation Cloud alternative via EAS Build
 ├── .env.example                # Modèle de variables d'environnement (sans secrets)
 ├── .gitignore                  # Exclusion stricte des clés, caches et secrets
 ├── LICENSE                     # Licence MIT
 ├── README.md                   # Documentation officielle exhaustive
 ├── app.json                    # Configuration Expo Application (nom, bundleId, icône)
 ├── babel.config.js             # Configuration Babel avec support Expo
+├── eas.json                    # Profils de compilation EAS (APK standalone & Production)
 ├── metro.config.js             # Configuration du bundler Metro
 ├── package.json                # Dépendances et scripts NPM
 ├── pnpm-lock.yaml              # Verrouillage exact des versions
@@ -262,6 +268,39 @@ EXPO_PUBLIC_ENABLE_KILL_SWITCH_BY_DEFAULT="true"
   ```bash
   pnpm web
   ```
+
+---
+
+## 📱 Déploiement & Génération de l'APK Android
+
+L'application intègre des workflows automatisés prêts à l'emploi pour compiler et distribuer l'APK Android autonome :
+
+### 1. Workflow GitHub Actions Automatisé (`build-apk.yml`)
+Le fichier `.github/workflows/build-apk.yml` compile automatiquement un APK installable :
+- **Déclenchement automatique** : À chaque `push` sur la branche `main` et lors de la création d'un tag de version `v*`.
+- **Déclenchement manuel (`workflow_dispatch`)** :
+  1. Allez dans l'onglet **Actions** de votre dépôt GitHub.
+  2. Sélectionnez le workflow **Build CONTINENT VPN Android APK**.
+  3. Cliquez sur **Run workflow** (choix de la variante `release` ou `debug`, et publication optionnelle en Release GitHub).
+- **Téléchargement de l'APK** :
+  - L'APK compilé est archivé dans les artefacts de build (**continent-vpn-android-apk**).
+  - Si un tag `v*` est poussé, l'APK est automatiquement attaché à la **Release GitHub**.
+
+### 2. Compilation via Expo Application Services (EAS Build)
+Le fichier `eas.json` configure les profils de génération APK autonome :
+```bash
+# Générer un APK Preview pour tests internes
+pnpm build:apk
+
+# Générer un APK en local sur votre machine
+pnpm build:apk:local
+```
+
+### 3. Installation sur Appareil Android (Sideloading)
+1. Téléchargez le fichier `continent-vpn-mobile-v1.0.0.apk` sur votre téléphone.
+2. Ouvrez le fichier dans votre gestionnaire de fichiers.
+3. Autorisez l'installation d'applications issues de sources inconnues lorsque le système vous y invite.
+4. Lancez **CONTINENT VPN** et profitez d'une protection souveraine !
 
 ---
 

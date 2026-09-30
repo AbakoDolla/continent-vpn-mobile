@@ -22,7 +22,13 @@
         "foregroundImage": "./assets/images/continent-vpn-logo.png",
         "backgroundColor": "#05070A"
       },
-      "package": "com.continentvpn.mobile"
+      "package": "com.continentvpn.mobile",
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.POST_NOTIFICATIONS"
+      ]
     },
     "web": {
       "bundler": "metro",
