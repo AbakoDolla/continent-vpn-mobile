@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "CONTINENT VPN",
+    "slug": "continent-vpn-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/continent-vpn-logo.png",
+    "scheme": "continentvpn",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/continent-vpn-logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#05070A"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.continentvpn.mobile"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/continent-vpn-logo.png",
+        "backgroundColor": "#05070A"
+      },
+      "package": "com.continentvpn.mobile"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/continent-vpn-logo.png"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
