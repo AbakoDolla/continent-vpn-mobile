@@ -59,11 +59,11 @@ jobs:
       - name: 📥 Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: 🎨 Generate Image Assets
-        run: node scripts/generate-assets.js
-
       - name: 🔍 TypeScript Type Check
         run: pnpm typecheck
+
+      - name: 🎨 Generate Image Assets
+        run: node scripts/generate-assets.js
 
       - name: ⚙️ Generate Native Android Project (Expo Prebuild)
         run: npx expo prebuild --platform android --clean
